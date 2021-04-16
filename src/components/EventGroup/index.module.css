@@ -1,0 +1,28 @@
+.eventGroup {
+  border: 1px solid #000;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.eventGroup.passed {
+  background: rgb(230, 230, 230);
+  border: 1px solid rgb(136, 136, 136);
+}
+
+.eventGroup.withEvents {
+  border-color: rgb(238, 207, 68);
+  box-shadow: 0px -1px 12px 0px rgba(255, 251, 6, 0.67);
+}
+
+.eventGroup .events {
+  display: none;
+}
+
+.eventGroup.withEvents:hover .events {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  padding: 20px;
+  border: 1px solid #000;
+  background: yellow;
+}
