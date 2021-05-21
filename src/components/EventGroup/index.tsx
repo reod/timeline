@@ -10,7 +10,22 @@ export interface EventGroupProps {
 
 export const EventGroup: React.FC<EventGroupProps> = ({ group }) => {
   const eventsWithContent = group.events.filter((e) => e.name !== "");
+  const hasEvents = eventsWithContent.length > 0;
   const passed = group.events.some((e) => e.passed);
+ 
+  const tile = (
+    <div
+      className={css(styles.eventGroup, {
+        [styles.withEvents]: hasEvents,
+        [styles.passed]: passed,
+      })}
+    ></div>
+  );
+
+  if (!hasEvents) {
+    return tile;
+  }
+
   const content = eventsWithContent.map((event: Event) => {
     return (
       <div className={styles.event}>
@@ -25,12 +40,7 @@ export const EventGroup: React.FC<EventGroupProps> = ({ group }) => {
 
   return (
     <Popover content={content} title={title}>
-      <div
-        className={css(styles.eventGroup, {
-          [styles.withEvents]: eventsWithContent.length > 0,
-          [styles.passed]: passed,
-        })}
-      ></div>
+      {tile}
     </Popover>
   );
 };
